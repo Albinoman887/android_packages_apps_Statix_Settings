@@ -2,15 +2,11 @@
 // SPDX-License-Identifier: Apache-2.0
 
 android_library {
-    name: "StatixSettings-core",
+    name: "PixelFaceEnroll-core",
     platform_apis: true,
 
     srcs: ["src/**/*.java"],
     static_libs: [
-        "accountfeatureprovidergoogle",
-        "columbus-settingsgoogle",
-        "gamemode-settingsgoogle",
-        "powerusagefeaturegoogle",
         "Settings-core",
     ],
     resource_dirs: [
@@ -20,18 +16,13 @@ android_library {
 }
 
 android_app {
-    name: "StatixSettings",
+    name: "PixelFaceEnroll",
     defaults: ["platform_app_defaults"],
     platform_apis: true,
     certificate: "platform",
     system_ext_specific: true,
     privileged: true,
-    required: [
-        "privapp_whitelist_com.android.settings",
-        "settings-platform-compat-config",
-        "SettingsIntelligenceGooglePrebuilt",
-    ],
-    static_libs: ["StatixSettings-core"],
+    static_libs: ["PixelFaceEnroll-core"],
     uses_libs: ["org.apache.http.legacy"],
     optional_uses_libs: [
         "androidx.window.extensions",
@@ -48,28 +39,4 @@ android_app {
     ],
     manifest: ":Settings_manifest",
     additional_manifests: ["AndroidManifest.xml"],
-}
-
-java_import {
-    name: "accountfeatureprovidergoogle",
-    jars: ["libs/accountfeatureprovidergoogle.jar"],
-    sdk_version: "current",
-}
-
-java_import {
-    name: "columbus-settingsgoogle",
-    jars: ["libs/columbus-settings.jar"],
-    sdk_version: "current",
-}
-
-java_import {
-    name: "gamemode-settingsgoogle",
-    jars: ["libs/gamemode.jar"],
-    sdk_version: "current",
-}
-
-java_import {
-    name: "powerusagefeaturegoogle",
-    jars: ["libs/powerusagefeaturegoogle.jar"],
-    sdk_version: "current",
 }
